@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Patient Management</h2>
+
+    <!-- ADD Patient Form -->
+    <form method="POST" class="border rounded p-4 bg-light mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <label for="pno" class="form-label">Patient ID</label>
+                <input type="text" name="pno" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="pname" class="form-label">Name</label>
+                <input type="text" name="pname" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="pgender" class="form-label">Gender</label>
+                <input type="text" name="pgender" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="page" class="form-label">Age</label>
+                <input type="text" name="page" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="pward" class="form-label">Ward</label>
+                <input type="text" name="pward" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="pstatus" class="form-label">Status</label>
+                <input type="text" name="pstatus" class="form-control">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Add Patient</button>
+        <a href="/" class="btn btn-secondary mt-3 ms-2">Back to Homepage</a>
+    </form>
+
+    <!-- SEARCH Form -->
+    <form method="GET" class="mb-3 d-flex justify-content-end">
+        <input type="text" name="search" class="form-control w-25 me-2" placeholder="Search by name" value="{{ search }}">
+        <button class="btn btn-outline-primary">Search</button>
+    </form>
+
+    <!-- PATIENT TABLE -->
+    {% if patients %}
+    <table class="table table-bordered table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Ward</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in patients %}
+            <tr>
+                <td>{{ p.pno }}</td>
+                <td>{{ p.pname }}</td>
+                <td>{{ p.pgender }}</td>
+                <td>{{ p.page }}</td>
+                <td>{{ p.pward }}</td>
+                <td>{{ p.pstatus }}</td>
+                <td>
+                    <a href="{{ url_for('edit_patient', id=p.pno) }}" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="{{ url_for('delete_patient', id=p.pno) }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete this patient?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No patients found.</p>
+    {% endif %}
+</div>
+</body>
+</html>

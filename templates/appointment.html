@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Appointment Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="text-center">Appointment Management</h2>
+
+    <form method="POST" class="border rounded p-4 bg-light mt-4">
+        <div class="mb-3">
+            <label for="appt_id" class="form-label">Appointment ID</label>
+            <input type="text" class="form-control" name="appt_id" required>
+        </div>
+        <div class="mb-3">
+            <label for="pno" class="form-label">Patient ID</label>
+            <input type="text" class="form-control" name="pno" required>
+        </div>
+        <div class="mb-3">
+            <label for="dno" class="form-label">Doctor ID</label>
+            <input type="text" class="form-control" name="dno" required>
+        </div>
+        <div class="mb-3">
+            <label for="appt_date" class="form-label">Appointment Date</label>
+            <input type="date" class="form-control" name="appt_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="appt_time" class="form-label">Appointment Time</label>
+            <input type="text" class="form-control" name="appt_time" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Appointment</button>
+        <a href="/" class="btn btn-secondary ms-2">Back to Homepage</a>
+    </form>
+
+    {% if appointments %}
+    <h4 class="mt-5">All Appointments</h4>
+    <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Patient ID</th>
+                <th>Doctor ID</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.appt_id }}</td>
+                <td>{{ appt.pno }}</td>
+                <td>{{ appt.dno }}</td>
+                <td>{{ appt.appt_date.strftime('%Y-%m-%d') }}</td>
+                <td>{{ appt.appt_time }}</td>
+                <td>
+                    <a href="{{ url_for('edit_appointment', id=appt.appt_id) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="{{ url_for('delete_appointment', id=appt.appt_id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this appointment?')">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+</body>
+</html>
