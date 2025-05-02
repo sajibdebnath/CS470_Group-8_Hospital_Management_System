@@ -25,7 +25,9 @@ Oracle DSN: (e.g., oracle2.wiu.edu:1521/orclpdb1)
 Python Packages (from requirements.txt):
 ----------------------------------------
 Flask==2.2
+
 Flask-SQLAlchemy==3.0.3
+
 Jinja2==3.1.2
 MarkupSafe==2.1.2
 SQLAlchemy==2.0.3
