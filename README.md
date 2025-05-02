@@ -1,5 +1,9 @@
 # CS470_Group-8_Hospital_Management_System
 Hospital Management System
+Group Members:
+1.	Name: Sajib Debnath, WIU ID: 923-60-2769, Email: s-debnath@wiu.edu
+2.	Name: Md Zakir Hossain Zamil, WIU ID: 923-50-3436, Email: mzh-zamil@wiu.edu 
+3.	Name: Clerique Ward, WIU ID: 923-663-392, Email: cts-ward@wiu.edu 
 
 ====================================
 PROJECT OVERVIEW
